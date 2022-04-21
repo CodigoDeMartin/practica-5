@@ -1,0 +1,56 @@
+proceure ExpandirBacterias(){
+  /*
+  Propósito: Si hay un cultivo de bacterias y nutrientes en la celda actual agrega un bacteria 
+            y consume un nutriente a razon de dos nutrientes por bacteria.
+  Paramétros:ninguna
+  Precondición:
+     >deben haber almenos tantos nutrientes como 2 veces la cantidad de bacterias junto a la que agregamos nosotros en la celda actual si hay una bacteria.
+  */
+  if ( hayAlmenosUnaBacteria() )
+    then {  
+    PonerUnaBacteria()
+    Consumir2NutrientesPorCadaBacteriaQueHayaEnLaCeldaActual()
+    }
+}
+procedure PonerUnaBacteria(){
+	/*
+	Propósito: Poner una bacteria en la celda actual.
+	Precondición: ninguna.
+	*/
+	Poner(Verde)
+}
+procedure Consumir2NutrientesPorCadaBacteriaQueHayaEnLaCeldaActual(){
+	/*
+	Propósito: Consumir 2 nutrientes por cada bacteria que haya en la celda actual
+	Precondición: 
+   >deben haber almenos tantos nutrientes como 2 veces la cantidad de bacterias que haya en la celda actual.
+	*/
+	repeat ( cantidadDeNutrientesAConsumir() ){
+  SacarUnNutriente()
+  }
+}
+function hayAlmenosUnaBacteria(){
+  /*
+  Propósito: indicar si hay almenos una bacteria en la celda actual.
+  Paramétros:ninguno
+  Precondición:ninguna.
+  */
+  return( hayBolitas(Verde) )
+ }
+ function cantidadDeNutrientesAConsumir(){
+  /*
+  Propósito: describir la cantidad de nutrientes que se deben consumir.
+  Paramétros:ninguno
+  Precondición:ninguna.
+  */
+  return( 2 * nroBolitas(Verde)  )
+ }
+
+procedure SacarUnNutriente(){
+	/*
+	Propósito: Sacar un nutriente de la celda actual.
+	Precondición:
+	 -debe haber almenos un nutriente de la celda actual.
+	*/
+	Sacar(Azul)
+}
