@@ -1,0 +1,139 @@
+function hayMásde5BolitasEnLaCeldaActual(){
+    /*
+    Propósito:  indicar  que hay mas de 5 bolitas en la celda actual-
+    Paramétros:ninguna
+    Precondición:ninguna
+    */
+    return( cantidadDeBolitasRojas()+ cantidadDeBolitasVerdes()+cantidadDeBolitasNegras()+ cantidadDeBolitasAzules()>5 )
+}
+
+function  cantidadDeBolitasRojas(){
+    /*
+    Propósito:  describe la cantidad de bolitas rojas en la celda actual.
+    Paramétros:ninguna
+    Precondición:ninguna
+    */
+    return (nroBolitas(Rojo))
+}
+function  cantidadDeBolitasVerdes(){
+    /*
+    Propósito:  describe la cantidad de bolitas Verdes en la celda actual.
+    Paramétros:ninguna
+    Precondición:ninguna
+    */
+    return (nroBolitas(Verde))
+}
+function  cantidadDeBolitasNegras(){
+    /*
+    Propósito:  describe la cantidad de bolitas Negras en la celda actual.
+    Paramétros:ninguna
+    Precondición:ninguna
+    */
+    return (nroBolitas(Negro))
+}
+function  cantidadDeBolitasAzules(){
+    /*
+    Propósito:  describe la cantidad de bolitas Azules en la celda actual.
+    Paramétros:ninguna
+    Precondición:ninguna
+    */
+    return (nroBolitas(Azul))
+}
+
+// eje b
+function hayAlmenos5BolitasEnLaCeldaActual(){
+    /*
+    Propósito:  indicar  que hay almenos 5 bolitas en la celda actual-
+    Paramétros:ninguna
+    Precondición:ninguna
+    */
+    return( cantidadDeBolitasRojas()+ cantidadDeBolitasVerdes()+cantidadDeBolitasNegras()+ cantidadDeBolitasAzules()>=5 )
+}
+
+// eje c
+function hayMásde5BolitasEnLaCeldaActualYElBordeSeEncuentraEnLaCeldaLindanteAlEste(){
+    /*
+    Propósito:  indicar  que hay almenos 5 bolitas en la celda actual y el borde se encuentra al este de la posición actual del cabezal
+    Paramétros:ninguna
+    Precondición:ninguna
+    */
+    return( hayAlmenos5BolitasEnLaCeldaActual() && not puedeMoverEste() )
+}
+
+function puedeMoverEste(){
+    /*
+    Propósito: indicar si el cabezal puede moverse al este de la posición actual
+    Paramétro:ninguna
+    Precondición:ninguna
+    */
+    return (puedeMover(Este))
+}
+
+//eje d
+function hayUnaCeldaAlNorteOHayUNaAlEste(){
+    /*
+    Propósito: indicar si hay una celda al este o al norte de la posición actual del cabezal
+    Paramétro:ninguna
+    Precondición:ninguna
+    */
+    return (puedeMover(Este) || puedeMover(Oeste))
+}
+
+// eje e
+function hayBolitasDeTodosLosColoresEnLaPosiciónActualDelCabezal(){
+    /*
+    Propósito: indicar si la celda actual tiene bolitas de todos los colores.
+    Paramétro:ninguno
+    Precondición:ninguna
+    */
+    return ( hayBolitasRojas() && hayBolitaVerdes() && hayBolitasNegras() && hayBolitasAzules() )
+}
+function hayBolitasRojas(){
+    /*
+    Propósito: indicar si la celda actual tiene bolitas Rojas.
+    Precondición:ninguna
+    Paramétros:ninguno
+    */
+    return( hayBolitas(Rojo) )
+}
+function hayBolitasVerdes(){
+    /*
+    Propósito: indicar si la celda actual tiene bolitas Verdes.
+    Precondición:ninguna
+    Paramétros:ninguno
+    */
+    return ( hayBolitas(Verde) )
+}
+function hayBolitasNegras(){
+    /*
+    Propósito: indicar si la celda actual tiene bolitas NEgras.
+    Precondición:ninguna
+    Paramétros:ninguno
+    */
+    return ( hayBolitas(Negro) )
+}
+function hayBolitasRojasAzules(){
+    /*
+    Propósito: indicar si la celda actual tiene bolitas Azules.
+    Precondición:ninguna
+    Paramétros:ninguno
+    */
+    return (hayBolitas(Azul))
+}
+// eje f
+function NohayBolitasDeTodosLosColoresEnLaPosiciónActualDelCabezal(){
+    /*
+    Propósito: indicar si la celda actual tiene bolitas de todos los colores.
+    Paramétro:ninguno
+    Precondición:ninguna
+    */
+    return ( not hayBolitasRojas() || not hayBolitaVerdes() || not hayBolitasNegras() || not hayBolitasAzules() )
+}
+function NohayBolitasDeTodosLosColoresEnLaPosiciónActualDelCabezal(){
+    /*
+    Propósito: indicar si la celda actual tiene bolitas de todos los colores.
+    Paramétro:ninguno
+    Precondición:ninguna
+    */
+    return ( not hayBolitasDeTodosLosColoresEnLaPosiciónActualDelCabezal() )
+}
