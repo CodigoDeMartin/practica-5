@@ -54,3 +54,28 @@ procedure SacarUnNutriente(){
 	*/
 	Sacar(Azul)
 }
+//eje d)
+ procedure PonerFlecha_AlNorteSiCorresponde(colorDeLaFlecha){
+ 	/*
+	Propósito: Poner una flecha al norte si corresponde de color "colorDeLaFlecha" dado.
+	Paramétros:
+	 <colorDeLaFlecha tipo Color, es el color de la flecha que vamos a agregar.
+	Precondición:ninguna
+	*/
+	if ( puedeMover(Norte) ){
+	 PonerUnaFlechaAlNorteDeColor_(colorDeUnaFlecha)
+	 }
+ }
+ 
+procedure PonerUnaFlechaAlNorteDeColor_(colorDeUnaFlecha){
+	/*
+	Propósito: Poner una flecha al norte de color "colorDeUnaFlecha" dado.
+	Paramétro:
+	 >colorDeUnaFlecha tipo Color, es el color de la flecha.
+	Precondición:
+	 >debe haber almenos una celda al norte.
+	 >la celda debe estar vacia.
+	*/
+	Mover(Norte)
+	Poner(colorDeUnaFlecha)
+}
