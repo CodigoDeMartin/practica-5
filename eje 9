@@ -1,0 +1,92 @@
+function colorAliado(){
+	/*
+	Propósito: describir el color de un aliado.
+	Paramétros:no tiene 
+	Precondición:ninguna
+	*/
+	return (Negro)
+}
+function colorEnemigo(){
+	/*
+	Propósito: describir el color de un enemigo
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	return (Rojo)
+}
+
+function cantidadDeSoldadosDel_(colorDelEjército){
+	/*
+	Propósito: describir la cantidad de soldados del color "colorDelEjército" dado
+	Paramétros:
+	 >colorDelEjército tipo Color, es el color del ejercito que queremos contar.
+	Precondición:ninguna
+	*/
+	return (nroBolitas(colorDelEjército))
+}
+
+
+function esCeldaIndefensa() {
+	/*
+	Propósito: indica que no hay soldados aliados en la celda actual
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	return ( not hayBolitas(Negro) )
+}
+
+function  estadoDeEmergencia() {
+	/*
+	Propósito: indica que hay mas de 100 soldados enemigos en la celda actual y no hay soldados aliados
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	return ( hayMasDe100SoldadosEnemigos() && esCeldaIndefensa() )
+}
+
+function  hayMasDe100SoldadosEnemigos() {
+	/*
+	Propósito: indica que hay mas de 100 soldados enemigos en la celda actual.
+	Paramétros:no tiene.
+	Precondición:ninguna.
+	*/
+	return ( nroBolitas(Rojo)> 100 )
+}
+
+function haySuficientesAliadosARazónDe_PorCada_(cantidadDefensa, cantidadAtaque){
+	/*
+	Propósito: indicar si la proporcion de "cantidadDefensa" es a razon de "cantidadAtaque" dada
+	Paramétros:
+	 -cantidadDefensa tipo Número, es una proporcion 
+	 -cantidadAtaque tipo Número, es la segunda razon.
+	Precondición:ninguna
+	*/
+	return ( cantidadDeSoldadosAliados() * cantidadDefensa >=  cantidadDeSoldadosEnemigos()  * cantidadAtaque   )
+
+}
+function cantidadDeSoldadosAliados(){
+	/*
+	Proposito: describir la cantidad de soldados aliados en la celda actual
+	Parametros:no tiene
+	Precondicion: Ninguna
+	*/
+	return (cantidadDeSoldadosDel_(Negro))
+}
+function cantidadDeSoldadosEnemigos(){
+	/*
+	Proposito: describir la cantidad de soldados enemigos en la celda actual
+	Parametros:no tiene
+	Precondicion: Ninguna
+	*/
+	return (cantidadDeSoldadosDel_(Rojo))
+}
+//eje f no terminado!!!!
+function aliadosNecesariosParaDefensaEficaz(){
+	/*
+	Propósito: describe el número de soldados aliados que faltan para defender la celda actual
+	Paramétros:no tiene.
+	Observaciones: 2 soldados enemigos pelean contra 3 soldados aliados y todos mueren.
+	Precondición:
+	 >no hay suficientes aliados.
+	*/
+}
