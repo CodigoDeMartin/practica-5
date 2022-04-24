@@ -1,0 +1,193 @@
+procedure GerminarSemilla(){
+	/*
+	Propósito: Transforma una semilla en un arbol. Si en la celda actual no hay suficientes nutrientes o no hay hay semilla no hace nada.
+	Paramétros:ninguno
+	Precondición:ninguna.
+	*/
+	if (hayNutrientesSuficientes() && haySemilla()) 
+	 then {
+	 	Consumir3Nutrientes()
+	 	Sacar( semilla() )
+	 	Poner( Arbol() )
+	 }
+}
+function hayNutrientesSuficientes(){
+	/*
+	Propósito: indicar si hay 3 nutrientes en la celda actual
+	Paramétros:ninguna
+	Precondición:ninguna
+	*/
+	return ( nroBolitas(Azul)== 3 )
+}
+function haySemilla(){
+	/*
+	Propósito:indicar si hay almenos una semilla en la celda actual.
+	Paramétros:ninguno
+	Precondición:ninguna
+	*/
+	return ( hayBolitas(Rojo))
+}
+procedure Consumir3Nutrientes(){
+	/*
+	Propósito: Consumir los nutrientes necesarios para germinar una semilla
+	Paramétros:ninguno
+	Precondición:
+	>debe haber almenos 3 nutrientes en la celda actual
+	*/
+	Sacar__Veces(nutriente(), 3)
+}
+
+// eje b
+
+procedure AlimentarÁrboles(){
+	/*
+	Propósito: Alimentar un arbol consumiendo un nutriente por arbol que haya en la celda actual.Si hay menos nutrientes de lo que
+			   se necesita, se consumen todos los que hay.
+
+	Paramétros:ninguno
+	Precondición:ninguna
+	*/
+	repeat ( cantidadDeArbolesEnLaCeldaActual() ){ 
+		 ConsumirUnNutrieneteSiHay()
+		}
+}
+
+function cantidadDeArbolesEnLaCeldaActual(){
+	/*
+	Propósito: describir la cantidad de arboles que hay en la celda actual
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	return (nroBolitas(Verde))
+}
+procedure ConsumirUnNutrieneteSiHay(){
+	/*
+	Propósito: Sacar un nutriente de la celda actual solo en caso de que haya uno
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	if ( hayNutrienteEnLaCeldaActual() )
+	 then { Sacar( nutriente() )
+	 		}
+}
+
+function hayNutrienteEnLaCeldaActual(){
+	/*
+	Propósito: indicar si hay un nutriente en la ubicación actual.
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	return (hayBolitas(Azul))
+}
+
+
+// eje c
+
+procedure ExplotarBomba(){
+	/*
+	Propósito: Explota una bomba eliminando arboles de la ubicación donde se encuentra la bomba. derriba 5 árboles en la celda actual y 3 en la celda lindante al Norte. Si la celda actual está en el borde Norte, entonces solo se eliminan los árboles de la celda actual.
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	repeat ( cantidadDeBombasEnLaCeldaActual() ){
+	 Destruir5ArbolesSiHayY3ArbolesAlNorteSiSePuedeMoVerAlNorteYSiHayConUnaBomba()
+	}
+}
+procedure Destruir5ArbolesSiHayY3ArbolesAlNorteSiSePuedeMoVerAlNorteYSiHayConUnaBomba(){
+	/*
+	Propósito: Sacar todos los arboles que destruye una bomba 
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	SacarLos5ArbolesDeLaCeldaActualSiHayConUnaBomba()
+	SacarLos3ArbolesDelNorteSiHayYSiSePuedeMoverAlNorte()
+}
+procedure SacarLos5ArbolesDeLaCeldaActualSiHayConUnaBomba(){
+	/*
+	Propósito: Sacar 5 arboles de la celda actual si hay.Si no solo saca los que haya.
+	Paramétros:no tiene 
+	Precondición:ninguna
+	*/
+	repeat(5) {
+	 Sacar_Si_(arbol(), hayArbol())
+	}
+}
+
+procedure SacarLos3ArbolesDelNorteSiHayYSiSePuedeMoverAlNorte(){
+	/*
+	Propósito: Sacar 5 arboles de la celda actual si hay.Si no solo saca los que haya.
+	Paramétros:no tiene 
+	Precondición:ninguna
+	*/
+	if (puedeMover(Norte) )
+	 then {
+	 Mover(Norte)
+	 SacarSiPuedeHasta3ArbolesDeLaCeldaActual()
+	 Mover(Sur) // regresa el cabezal al inicio
+	 }
+}
+procedure SacarSiPuedeHasta3ArbolesDeLaCeldaActual(){
+	/*
+	Propósito: Saca si puede 3 arboles de la celda en la que nos encontramos
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	repeat(3) {
+	 Sacar_Si_( arbol(), hayArbol() )
+	}
+}
+
+function hayArbol(){
+	/*
+	Propósito: indicar si hay un arbol en la celda actual
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	return (hayBolitas(Verde))
+}
+
+// eje d
+procedure Polinizar(){
+	/*
+	Propósito: Polinizar la siguiente celda. poniendo semillas en esa celda como árboles hayaen la celda actual, menos 3.
+				Si en la celda actual haymenos de 3 árboles, o no tiene lindante al Este, entonces no se hace nada
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	if (hayAlmenos3Arboles() && hayTierraAlEste())
+		then {
+			PolinizarLaCeldaLindanteAlEsteCon_Semillas( cantidadDeArbolesEnLaCeldaActual() )
+	 	 	}
+}
+
+procedure PolinizarLaCeldaLindanteAlEsteCon_Semillas(cantidadDeSemillasAAgregar){
+	/* 
+	Propósito:Agregar semillas al Este de la posicion actual del cabezal.Generando tantas semillas
+	 en esa celda como árboles haya en la celda actual, menos 3.
+	Paramétros:
+    -	cantidadDeSemillasAAgregar tipo Número es la cantidad de semillas que vamos a agregar en la celda lindante al este 
+	Precondición: 
+	  >debe haber almenos una celda al este de la posición actual del cabezal
+	  >debe haber almenos 3 arboles en la celda inmediata lindante al Oeste
+	*/
+	Mover(Este)
+	Poner__Veces ( semilla() , cantidadDeSemillasAAgregar-3 )
+	Mover(Oeste) // regresar el cabezal al inicio.
+}
+function hayAlmenos3Arboles(){
+	/*
+	Propósito: Indicar que hay almenos 3 arboles en la celda actual.
+	Paramétros: no tiene.
+	Precondición:ninguna
+	*/
+	return ( nroBolitas(Verde)==3 )
+}
+
+function hayTierraAlEste(){
+	/*
+	Propósito: Indicar que hay tierra al Este.
+	Paramétros: no tiene.
+	Precondición:ninguna
+	*/
+	return ( puedeMover(Este) )
+}
