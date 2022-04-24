@@ -1,0 +1,61 @@
+procedure PudrirManzana(){
+	/*
+	Propósito: Pudrir una manzana. 
+	Paramétros:ninguna
+	Precondición:
+	 >debe haber almenos una manzana enn buen estado en la celda actual.
+	 >debe haber almenos un guzano en la celda actual.
+	*/
+	Reemplazar_Y_Por_(guzanoEnLaCeldaActual(), manzanaEnLaCeldaActual(), manzanaPodridaEnLaCeldaActual())
+}
+
+procedure Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, colorAAgregar){
+	/*
+	Propósito: reemplazar una bolita de color "primerColorAReemplazar" y una de color "segundoColorAReemplazar" con una de color "colorAAgregar" dado.
+	Paramétros:
+	 -primerColorAReemplazar tipo Color , es el color de la bolita que queremos sacar del tablero
+	 -segundoColorAReemplazar tipo Color, es el color de la segunda bolita que queremos sacar del tablero.
+	Precondición:
+	 -debe haber almenos una bolita de color primerColorAReemplazar en la celda actual.
+	 -debe haber almenos una bolita de color segundoColorAReemplazar en la celda actual.
+	*/
+	Sacar(primerColorAReemplazar)
+	Sacar(segundoColorAReemplazar)
+	Poner(colorAAgregar)
+}
+function guzanoEnLaCeldaActual(){
+	/*
+	Propósito:Describe un guzano en la celda actual.
+	Paramétros:ninguna
+	Precondición:ninguna
+	*/
+	return ( Verde )
+}
+function manzanaEnLaCeldaActual(){
+	/*
+	Propósito:Describe una manzana en la celda actual.
+	Paramétros:ninguna
+	Precondición:ninguna
+	*/
+	return ( Rojo )
+}
+function manzanaPodridaEnLaCeldaActual(){
+	/*
+	Propósito:Describe una manzana en mal estado en la celda actual.
+	Paramétros:ninguna
+	Precondición:ninguna
+	*/
+	return ( Negro )
+}
+procedure PudrirHasta_Manzanas(cantidadAPudrir){
+	/*
+	Propósito: pudrir la cantidad "cantidadAPudrir" de manzanas en la celda actual.
+	Paramétros:
+	 -cantidadAPudrir tipo Número, es la cantida de manzanas que queremos pudrir en la celda actual
+	Precondición:
+	 >debe haber almenos la cantidad minima "cantidadAPudrir" dada de manzanas en la celda actual.
+	*/
+	repeat (cantidadAPudrir){
+	PudrirManzana()
+	}
+}
