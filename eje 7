@@ -1,0 +1,25 @@
+procedure SacarExactamente8BolitasAzulesOpciónA() {
+	/* 
+	PROPÓSITO:
+	 * sacar exactamente 8 bolitas de color Azul
+	PRECONDCIONES:
+	 * hay al menos 8 bolitas de color azul
+	*/
+	repeat (8) { Sacar(Azul) }
+	/* esta es la opcion correcta, la otra en cambio esta mal porque se programa a la defensiva garantizando
+	las precondiciones con un condicional (una mala practica de programacion) */
+}
+
+procedure SacarExactamente_Bolitas_(cantidadASacar, colorASacar){
+	/*
+	Propósito: Sacar exactamente la cantidad "cantidadASacar" de color "colorASacar" dado
+	Paramétros:
+	 -cantidadASacar tipo Número, es la cantidad de bolitas que deceamos sacar.
+	 -colorASacar tipo Color, es el color de las Bolitas elegidas para eliminar de la celda actual.
+	Precondición:
+	 >debe haber almenos la cantidad "cantidadASacar" de bolitas de color "colorASacar" dadas en la celda actual.
+	*/
+	repeat (cantidadASacar){
+	Sacar(colorASacar)
+	}
+}
