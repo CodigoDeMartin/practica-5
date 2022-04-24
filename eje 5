@@ -1,0 +1,77 @@
+procedure Poner_Si_(color, condición) {
+	/*
+	Propósito: Agregar una bolita de color "color" dada en la celda actual si cumple la condición "condición" dada
+	Paramétros:
+	 -color tipo Color, es la bolita que vamos a agregar si se cumple la condición dada.
+	 -condición tipo Bool, es la condicion que debe cumplirse
+	Precondición:ninguna
+	*/
+	if (condición)
+		then { Poner(color) }
+}
+procedure Sacar_Si_(color, condición){
+	/*
+	Propósito: Sacar una bolita de color "color" si se cumple la condición "condición" dada.
+	Paramétros: 
+	 -color tipo Color, es la bolita que vamos a agregar si se cumple la condición dada.
+	 -condición tipo Bool, es la condicion que debe cumplirse
+	Precondición:
+	 -debe haber almenos una bolita de color "color" en la celda actual, si se cumple la condición dada.
+	*/
+	if (condición) 
+		then { Sacar(color) }
+}
+procedure Mover_Si_(dirección, condición) {
+	/*
+	Propósito: Moverse una celda en la dirección "dirección" dada si se cumple la condición "condición" dada.
+	Paramétros: 
+	 -dirección tipo Dirección, es la dirección a la cual nos moveremos si se cumple la condición.
+	 -condición tipo Bool, es la condicion que debe cumplirse
+	Precondición:
+	 -debe haber almenos una celda en la dirección "dirección" dada si logra cumplirse la condición "condición" dada.
+	*/
+	if (condición) 
+		then { Mover(dirección) }
+}
+
+procedure  DesempatarParaElLocal__(colorDelLocal, colorDelVisitante){
+	/*
+	Propósito: desempatar para el local de color "colorDelLocal" agregando una bolita de su color.
+	Paramétros:
+	 -colorDelLocal tipo Color, es el color del local, es decir, de la bolita que queremos agregar.
+	 -colorDelVisitante tipo Color, es el color del visitante, es decir, de la bolita que no debemos agregar.
+	Precondición:ninguna.
+	*/
+	Poner_Si_(colorDelLocal, hayEmpateEntre_Y_(colorDelLocal, colorDelVisitante))
+}
+function hayEmpateEntre_Y_(color1, color2){
+	/* documentación hecha, ver practica 4 */
+	return ( nroBolitas(color1) == nroBolitas(color2) )
+}
+
+procedure  Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, colorAAgregar){
+	/*
+	Propósito: reemplazar una bolita de color "primerColorAReemplazar" y una de color "segundoColorAReemplazar" con una de color "colorAAgregar" dado.
+	Paramétros:
+	 -primerColorAReemplazar tipo Color , es el color de la bolita que queremos sacar del tablero
+	 -segundoColorAReemplazar tipo Color, es el color de la segunda bolita que queremos sacar del tablero.
+	Precondición:
+	 -debe haber almenos una bolita de color primerColorAReemplazar en la celda actual.
+	 -debe haber almenos una bolita de color segundoColorAReemplazar en la celda actual.
+	*/
+	Sacar_Si_(primerColorAReemplazar, haySiempreVerdadero())
+	Sacar_Si_(segundoColorAReemplazar, haySiempreVerdadero())
+	Poner_Si_(colorAAgregar, haySiempreVerdadero())
+}
+
+function haySiempreVerdadero(){
+	/*
+	Propósito: indicar o describir siempre una condición arbitraria que siempre tenga el valor verdad.
+	Paramétros: ninguna
+	Precondición:ninguna
+	*/
+	return (nroBolitas(Rojo)==nroBolitas(Rojo))
+}
+
+/*
+ el beneficio que trae Poner_Si_ y Sacar_Si_ en comparación del if es que son reutilizables y no deben escribirse cada vez que definimos un procedimiento ademas de que son mas legibles a la hora de usar dichas herramientas. */
