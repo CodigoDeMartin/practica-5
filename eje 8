@@ -1,0 +1,124 @@
+/*
+se Observa mayor legibilidad y mejor reutilizacion de codigo, porque ya no hablamos
+ de bolitas sino de la representacion de los objetos por lo que se entiende mejor */
+
+procedure RepararEdificio(){
+  /* 
+     PROPÓSITO: 
+       * reparar todas las máquinas del edificio. 
+         El cabezal queda en el Hall del último piso 
+         del edificio (el hall más al Norte)
+     PRECONDICIONES: 
+       * el cabezal debe estar en la hall del edificio
+  */
+  repeat( cantidadDePisos()){
+      Mover(Norte)
+      RepararPiso()
+  }
+}
+
+procedure RepararPiso(){
+  /* 
+     PROPÓSITO: 
+       * reparar todas las máquinas del piso actual
+         (sacando todos los Virus de las máquinas del piso)
+     PRECONDICIONES: 
+       * la celda actual es el Hall del piso
+  */
+  repeat ( cantidadDeMaquinasEnElPiso() ){
+      Mover(Este)
+      RepararMáquina()
+  }
+  IrAlBorde(Oeste)
+}
+
+procedure RepararMáquina(){
+  /* 
+     PROPÓSITO: 
+       * eliminar los virus de la celda actual y dejar 
+         la marca de OK.
+     PRECONDICIONES: 
+       * en la celda actual hay una máquina con virus
+         y sin marcas de OK.
+  */
+  SacarTodas_(virus()) 
+  IndicarOk()
+}
+
+procedure IndicarOk() {
+  /* 
+     PROPÓSITO: 
+       * indicar que la máquina de la celda actual no tiene 
+         virus poniendo la indicación de OK.
+     PRECONDICIONES: 
+       * la máquina de la celda actual no tiene virus ni 
+         indicación de OK.
+  */
+  Poner(Verde)
+}
+
+procedure SacarTodas_(colorASacar) {
+  /*
+     PROPÓSITO: 
+       * sacar de la celda actual todas las bolitas 
+         del color dado
+     PRECONDICIONES: 
+       * ninguna (es una operación total)
+     PARÁMETROS:
+       * colorASacar es un color, que indica el color 
+          de las bolitas que se deben sacar
+  */
+  repeat( nroBolitas(colorASacar) ){
+      Sacar(colorASacar)
+  }
+}
+// funciones usadas 
+function cantidadDePisos(){
+	/*
+	Propósito: describir la cantidade de pisos que hay en la celda actual.
+	Paramétros:ninguna
+	Precondición:ninguna
+	*/
+	return( nroBolitas(Azul)  )
+}
+function cantidadDeMaquinasEnElPiso(){
+	/*
+	Propósito: describir la cantidad de maquinas que hay hay en el piso actual.
+	Paramétros:ninguna
+	Precondición:ninguna
+	*/
+	return( nroBolitas(Negro)  )
+}
+function virus(){
+	/*
+	Propósito: describir un virus en la maquina actual
+	Paramétros:no tiene
+	Precondición:ninguna
+	*/
+	return (Rojo)
+}
+
+// eje b
+procedure RepararMáquinaSiTineVirus(){
+  /* 
+     PROPÓSITO: 
+       * eliminar los virus de la celda actual y dejar 
+         la marca de OK 
+     PRECONDICIONES: 
+       * ninguna.
+  */
+  if (not hayMarcaDeOK()) 
+   	then {
+   	SacarTodas_( virus() ) 
+   	IndicarOk() 
+   	}
+}
+
+function hayMarcaDeOK(){
+	/*
+	Propósito: indicar que en la maquina actual hay una marca de ok.
+	Paramétros:no tiene.
+	Precondición:ninguna.
+	*/
+	return ( hayBolitas(Verde) )
+}
